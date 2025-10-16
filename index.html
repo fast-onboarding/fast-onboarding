@@ -116,7 +116,8 @@
                 if (response.ok && result.ok) {
                     console.log('Telegram notification sent successfully:', result);
 
-                    statusMessage.textContent = '✅ 通知已發送至 Telegram！我們的專家將很快與您聯繫。';
+                    // --- 成功訊息已修改 ---
+                    statusMessage.textContent = '✅ 通知已發送至 顧問！我們的專家將很快與您聯繫。';
                     statusMessage.className = 'mt-4 text-sm text-uber-green font-semibold text-center';
                     
                     form.reset();
