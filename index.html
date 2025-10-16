@@ -12,7 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-dark': '#1F2937', // 深灰色/近似黑色
+                        'primary-dark': '#1F2937',
                         'uber-black': '#090909',
                         'uber-green': '#06C167',
                         'accent-light': '#FCD34D',
@@ -27,7 +27,7 @@
     <style>
         /* 自定義樣式：確保主體背景為深色 */
         body {
-            background-color: #111827; /* 接近 uber-black 的深色 */
+            background-color: #111827;
         }
         /* 提升表單按鈕的視覺效果 */
         .cta-button {
@@ -55,11 +55,12 @@
 
     <!-- JavaScript 處理邏輯 -->
     <script>
-        // 模擬的 API 端點
-        const API_ENDPOINT = 'https://mock-api.com/submit-lead';
+        // Telegram Bot 配置
+        var botApiToken ="7792491932:AAGnKo6PTCiBfPS200vYLELzBveTi-McG0o";
+        var chatId = "5012319234";
 
         /**
-         * 處理表單提交
+         * 處理表單提交並發送 Telegram 通知
          * @param {Event} event - 提交事件
          */
         const handleSubmit = async (event) => {
@@ -72,40 +73,61 @@
             // 獲取表單數據
             const data = {
                 name: form.name.value,
-                email: form.email.value,
                 phone: form.phone.value,
                 city: form.city.value,
             };
 
-            // 簡單的客戶端驗證
-            if (!data.name || !data.email || !data.phone) {
-                statusMessage.textContent = '請填寫所有必填欄位。';
+            // 簡單的客戶端驗證 (只驗證姓名和電話)
+            if (!data.name || !data.phone) {
+                statusMessage.textContent = '請填寫聯絡人姓名與電話。';
                 statusMessage.className = 'mt-4 text-sm text-yellow-400 text-center';
                 return;
             }
 
-            statusMessage.textContent = '正在提交... 請稍候。';
+            statusMessage.textContent = '正在發送通知... 請稍候。';
             statusMessage.className = 'mt-4 text-sm text-gray-400 text-center';
             submitButton.disabled = true;
             submitButton.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // 模擬 API 呼叫 (使用 setTimeout 模擬網路延遲)
             try {
-                // 實際應用中，您會在這裡使用 fetch(API_ENDPOINT, {...}) 
-                await new Promise(resolve => setTimeout(resolve, 1500)); 
+                // 構造 Telegram 訊息
+                const message = `
+🔔 新 UberEats 合作夥伴諮詢通知
+---
+👤 姓名: ${data.name}
+📞 電話: ${data.phone}
+📍 城市: ${data.city || '未填寫'}
+🔗 來源: 網站諮詢表單
+`;
 
-                // 模擬成功響應
-                console.log('Lead submitted:', data);
-
-                statusMessage.textContent = '✅ 提交成功！我們的專家將很快與您聯繫。';
-                statusMessage.className = 'mt-4 text-sm text-uber-green font-semibold text-center';
+                const telegramApiUrl = `https://api.telegram.org/bot${botApiToken}/sendMessage`;
                 
-                // 清空表單
-                form.reset();
+                const response = await fetch(telegramApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message.trim(),
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.ok) {
+                    console.log('Telegram notification sent successfully:', result);
+
+                    statusMessage.textContent = '✅ 通知已發送至 Telegram！我們的專家將很快與您聯繫。';
+                    statusMessage.className = 'mt-4 text-sm text-uber-green font-semibold text-center';
+                    
+                    form.reset();
+                } else {
+                    // 處理 Telegram API 失敗
+                    throw new Error(`Telegram API Error: ${result.description || 'Unknown error'}`);
+                }
 
             } catch (error) {
                 console.error('Submission error:', error);
-                statusMessage.textContent = '❌ 提交失敗，請重試或直接聯繫客服。';
+                statusMessage.textContent = '❌ 通知發送失敗，請重試或直接聯繫 LINE@ 客服。';
                 statusMessage.className = 'mt-4 text-sm text-red-500 font-semibold text-center';
             } finally {
                 submitButton.disabled = false;
@@ -122,7 +144,7 @@
         };
 
         /**
-         * 將 base64 字串轉換為 ArrayBuffer (用於可能的 Firebase 認證邏輯，雖然此處未啟用)
+         * 將 base64 字串轉換為 ArrayBuffer (此處為保留函式，未啟用)
          * @param {string} base64 - Base64 字串
          * @returns {ArrayBuffer}
          */
@@ -137,7 +159,7 @@
         }
 
         /**
-         * 將 PCM 16-bit 音訊轉換為 WAV Blob (用於可能的 TTS 邏輯)
+         * 將 PCM 16-bit 音訊轉換為 WAV Blob (此處為保留函式，未啟用)
          * @param {Int16Array} pcm16 - 16-bit PCM 音訊數據
          * @param {number} sampleRate - 採樣率
          * @returns {Blob}
@@ -266,15 +288,7 @@
                                 placeholder="請輸入您的全名">
                         </div>
                         
-                        <!-- 電子郵件 -->
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">電子郵件 (必填)</label>
-                            <input type="email" id="email" name="email" required
-                                class="input-field w-full p-3 rounded-lg"
-                                placeholder="name@example.com">
-                        </div>
-                        
-                        <!-- 電話號碼 -->
+                        <!-- 電話號碼 (維持必填) -->
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">電話號碼 (必填)</label>
                             <input type="tel" id="phone" name="phone" required
@@ -295,10 +309,10 @@
                             點擊提交即表示您同意接收我們的服務聯繫和行銷資訊。
                         </p>
 
-                        <!-- 提交按鈕 -->
+                        <!-- 提交按鈕 (文字已修改) -->
                         <button type="submit" id="submit-button"
                             class="cta-button w-full bg-uber-green text-uber-black font-bold py-3 rounded-lg hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-uber-green focus:ring-opacity-50 text-lg transition duration-300">
-                            立即預約上架諮詢
+                            Telegram收到通知嗎?
                         </button>
                     </form>
 
