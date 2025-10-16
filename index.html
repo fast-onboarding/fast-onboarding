@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UberEats 餐廳上架顧問服務 - 快速啟動</title>
+    <!-- 載入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 設置 Inter 字體及自定義配色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1F2937', // 深灰色/近似黑色
+                        'uber-black': '#090909',
+                        'uber-green': '#06C167',
+                        'accent-light': '#FCD34D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自定義樣式：確保主體背景為深色 */
+        body {
+            background-color: #111827; /* 接近 uber-black 的深色 */
+        }
+        /* 提升表單按鈕的視覺效果 */
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(6, 193, 103, 0.39);
+        }
+        .cta-button:hover {
+            box-shadow: 0 6px 20px 0 rgba(6, 193, 103, 0.5);
+            transform: translateY(-1px);
+        }
+        /* 輸入框的基本樣式 */
+        .input-field {
+            border: 1px solid #4B5563;
+            background-color: #1F2937;
+            color: white;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #06C167;
+            box-shadow: 0 0 0 3px rgba(6, 193, 103, 0.5);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-100 min-h-screen">
+
+    <!-- JavaScript 處理邏輯 -->
+    <script>
+        // 模擬的 API 端點
+        const API_ENDPOINT = 'https://mock-api.com/submit-lead';
+
+        /**
+         * 處理表單提交
+         * @param {Event} event - 提交事件
+         */
+        const handleSubmit = async (event) => {
+            event.preventDefault();
+
+            const form = event.target;
+            const statusMessage = document.getElementById('status-message');
+            const submitButton = document.getElementById('submit-button');
+            
+            // 獲取表單數據
+            const data = {
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                city: form.city.value,
+            };
+
+            // 簡單的客戶端驗證
+            if (!data.name || !data.email || !data.phone) {
+                statusMessage.textContent = '請填寫所有必填欄位。';
+                statusMessage.className = 'mt-4 text-sm text-yellow-400 text-center';
+                return;
+            }
+
+            statusMessage.textContent = '正在提交... 請稍候。';
+            statusMessage.className = 'mt-4 text-sm text-gray-400 text-center';
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+            // 模擬 API 呼叫 (使用 setTimeout 模擬網路延遲)
+            try {
+                // 實際應用中，您會在這裡使用 fetch(API_ENDPOINT, {...}) 
+                await new Promise(resolve => setTimeout(resolve, 1500)); 
+
+                // 模擬成功響應
+                console.log('Lead submitted:', data);
+
+                statusMessage.textContent = '✅ 提交成功！我們的專家將很快與您聯繫。';
+                statusMessage.className = 'mt-4 text-sm text-uber-green font-semibold text-center';
+                
+                // 清空表單
+                form.reset();
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                statusMessage.textContent = '❌ 提交失敗，請重試或直接聯繫客服。';
+                statusMessage.className = 'mt-4 text-sm text-red-500 font-semibold text-center';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        };
+
+        // 將 handleSubmit 函數附加到表單
+        window.onload = () => {
+            const formElement = document.getElementById('application-form');
+            if (formElement) {
+                formElement.addEventListener('submit', handleSubmit);
+            }
+        };
+
+        /**
+         * 將 base64 字串轉換為 ArrayBuffer (用於可能的 Firebase 認證邏輯，雖然此處未啟用)
+         * @param {string} base64 - Base64 字串
+         * @returns {ArrayBuffer}
+         */
+        function base64ToArrayBuffer(base64) {
+            const binary_string = window.atob(base64);
+            const len = binary_string.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binary_string.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        /**
+         * 將 PCM 16-bit 音訊轉換為 WAV Blob (用於可能的 TTS 邏輯)
+         * @param {Int16Array} pcm16 - 16-bit PCM 音訊數據
+         * @param {number} sampleRate - 採樣率
+         * @returns {Blob}
+         */
+        function pcmToWav(pcm16, sampleRate) {
+            const numChannels = 1;
+            const bitsPerSample = 16;
+            const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+            const blockAlign = numChannels * (bitsPerSample / 8);
+            const dataSize = pcm16.length * (bitsPerSample / 8);
+
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+
+            let offset = 0;
+
+            // 寫入 RIFF 塊
+            function writeString(s) {
+                for (let i = 0; i < s.length; i++) {
+                    view.setUint8(offset + i, s.charCodeAt(i));
+                }
+                offset += s.length;
+            }
+            function writeUint32(val) { view.setUint32(offset, val, true); offset += 4; }
+            function writeUint16(val) { view.setUint16(offset, val, true); offset += 2; }
+
+            writeString('RIFF'); // Chunk ID
+            writeUint32(36 + dataSize); // Chunk Size
+            writeString('WAVE'); // Format
+
+            // 寫入 fmt 塊
+            writeString('fmt '); // Sub-chunk 1 ID
+            writeUint32(16); // Sub-chunk 1 Size (16 for PCM)
+            writeUint16(1); // Audio Format (1 for PCM)
+            writeUint16(numChannels); // Num Channels
+            writeUint32(sampleRate); // Sample Rate
+            writeUint32(byteRate); // Byte Rate
+            writeUint16(blockAlign); // Block Align
+            writeUint16(bitsPerSample); // Bits Per Sample
+
+            // 寫入 data 塊
+            writeString('data'); // Sub-chunk 2 ID
+            writeUint32(dataSize); // Sub-chunk 2 Size
+
+            // 寫入 PCM 數據 (Int16Array 數據)
+            for (let i = 0; i < pcm16.length; i++) {
+                view.setInt16(offset, pcm16[i], true);
+                offset += 2;
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+    </script>
+
+    <!-- 主容器 -->
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+
+        <!-- 導航/標題 (品牌名稱) -->
+        <header class="py-4 flex justify-between items-center mb-12">
+            <h1 class="text-xl md:text-3xl font-extrabold text-white">
+                餐飲創業家顧問企業社
+            </h1>
+        </header>
+
+        <!-- 英雄區塊 (兩欄佈局：左側內容，右側表單) -->
+        <main class="grid lg:grid-cols-2 gap-12 items-start">
+            
+            <!-- 左側：標題和介紹 -->
+            <section class="space-y-6 lg:pt-8">
+                <h2 class="text-5xl md:text-6xl font-black leading-tight text-white">
+                    透過<span class="text-uber-green">餐飲創業家顧問企業社</span>，快速將您的餐廳上架至 UberEats！
+                </h2>
+                <p class="text-xl text-gray-300">
+                    立即填寫表格，獲取<span class="font-semibold text-white">餐飲創業家顧問企業社</span>的一對一專家顧問服務，協助您的餐廳<span class="font-semibold text-uber-green">快速上架</span>。我們簡化了繁瑣的合約和流程，讓您專注於美食製作。
+                </p>
+
+                <!-- 信任區塊 (Trust Badges/Logos) -->
+                <div class="mt-10 pt-6 border-t border-gray-700">
+                    <p class="text-lg font-semibold text-gray-200 mb-4">
+                        <svg class="w-6 h-6 inline mr-2 text-uber-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        已協助數千名餐飲業者成功拓展外送市場
+                    </p>
+                    <div class="flex flex-wrap items-center space-x-6">
+                        <!-- 模擬 UberEats Logo -->
+                        <div class="text-4xl font-bold text-gray-200">
+                            <span class="text-uber-green">Uber</span>Eats
+                        </div>
+                        
+                        <!-- 模擬評分 -->
+                        <div class="text-xl text-yellow-500 flex items-center">
+                            <span class="mr-1">4.9/5.0</span>
+                            <span class="text-lg">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 簡短評價 -->
+                <div class="space-y-6">
+                    <blockquote class="border-l-4 border-uber-green pl-4 italic text-gray-400 mt-8">
+                        "多虧了顧問的協助，我們的分店在兩週內就開始接單了，訂單量遠超預期！對於不熟悉數位外送平臺的老闆來說，這服務太重要了。"
+                        <footer class="mt-2 text-sm not-italic text-gray-500">- 臺中，陳老闆 (連鎖手搖飲業者)</footer>
+                    </blockquote>
+                    
+                    <blockquote class="border-l-4 border-uber-green pl-4 italic text-gray-400">
+                        "最讓我放心的是，顧問團隊真的找得到人！不像有些合作，簽完約人就消失了。他們都能回覆和協助，讓我們感到非常踏實。"
+                        <footer class="mt-2 text-sm not-italic text-gray-500">- 臺北，李小姐 (精緻咖啡廳經營者)</footer>
+                    </blockquote>
+                </div>
+
+            </section>
+
+            <!-- 右側：表單區塊 -->
+            <section>
+                <div class="bg-primary-dark p-6 md:p-10 rounded-xl shadow-2xl border border-gray-700">
+                    <h3 class="text-3xl font-bold text-white mb-6 text-center">
+                        透過<span class="text-uber-green">餐飲創業家顧問企業社</span>，開始您的免費上架諮詢
+                    </h3>
+                    
+                    <!-- 核心表單 -->
+                    <form id="application-form" class="space-y-5">
+                        <!-- 姓名 -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">聯絡人姓名 (必填)</label>
+                            <input type="text" id="name" name="name" required
+                                class="input-field w-full p-3 rounded-lg focus:ring-uber-green focus:border-uber-green"
+                                placeholder="請輸入您的全名">
+                        </div>
+                        
+                        <!-- 電子郵件 -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">電子郵件 (必填)</label>
+                            <input type="email" id="email" name="email" required
+                                class="input-field w-full p-3 rounded-lg"
+                                placeholder="name@example.com">
+                        </div>
+                        
+                        <!-- 電話號碼 -->
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">電話號碼 (必填)</label>
+                            <input type="tel" id="phone" name="phone" required
+                                class="input-field w-full p-3 rounded-lg"
+                                placeholder="09XX-XXX-XXX">
+                        </div>
+
+                        <!-- 城市/地區 -->
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-300 mb-1">餐廳所在主要城市 (選填)</label>
+                            <input type="text" id="city" name="city"
+                                class="input-field w-full p-3 rounded-lg"
+                                placeholder="例如：臺北/高雄">
+                        </div>
+                        
+                        <!-- 隱私聲明 -->
+                        <p class="text-xs text-gray-400 pt-2">
+                            點擊提交即表示您同意接收我們的服務聯繫和行銷資訊。
+                        </p>
+
+                        <!-- 提交按鈕 -->
+                        <button type="submit" id="submit-button"
+                            class="cta-button w-full bg-uber-green text-uber-black font-bold py-3 rounded-lg hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-uber-green focus:ring-opacity-50 text-lg transition duration-300">
+                            立即預約上架諮詢
+                        </button>
+                    </form>
+
+                    <!-- 狀態訊息顯示區 -->
+                    <div id="status-message" class="mt-4 text-sm text-center"></div>
+                </div>
+
+                <!-- 底部警告/免責聲明 -->
+                <div class="mt-6 text-center text-sm text-gray-400 p-4 bg-primary-dark/50 rounded-lg">
+                    <p class="font-bold mb-2">重要免責聲明:</p>
+                    <p>
+                        本服務由獨立第三方行銷公司 (餐飲創業家顧問企業社) 提供，<span class="text-red-400 font-semibold">非 Uber 或 UberEats 官方服務</span>。所有 Uber 和 UberEats 商標及圖像屬於其各自所有者。
+                    </p>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 合作申請步驟區塊 -->
+        <section id="how-it-works" class="mt-20 py-12">
+            <h2 class="text-4xl font-bold text-center text-white mb-12">
+                合作申請步驟：輕鬆三步曲
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 01: LINE@ (連結已更新) -->
+                <div class="bg-primary-dark p-6 rounded-xl shadow-2xl border border-gray-700 flex flex-col items-center text-center">
+                    <div class="text-5xl font-extrabold text-uber-green mb-4">01</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">點擊加入我們的LINE@</h3>
+                    <p class="text-gray-400 mb-6 flex-grow">餐飲創業家顧問企業社的窗口人員會在1-2天內回應您！</p>
+                    <a href="https://lin.ee/KC02bMr" target="_blank"
+                       class="inline-flex items-center justify-center w-full bg-uber-green text-uber-black font-bold py-3 px-6 rounded-lg hover:bg-green-500 transition duration-300 cta-button">
+                        點此加入 LINE@ &rarr;
+                    </a>
+                </div>
+                
+                <!-- Step 02: 取得方案 -->
+                <div class="bg-primary-dark p-6 rounded-xl shadow-2xl border border-gray-700 flex flex-col items-center text-center">
+                    <div class="text-5xl font-extrabold text-uber-green mb-4">02</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">取得最新抽成方案</h3>
+                    <p class="text-gray-400 flex-grow">我們會盡速提供最新、最優惠的抽成方案給您！</p>
+                </div>
+                
+                <!-- Step 03: 填寫資料 (連結已更新為 Google Form) -->
+                <div class="bg-primary-dark p-6 rounded-xl shadow-2xl border border-gray-700 flex flex-col items-center text-center">
+                    <div class="text-5xl font-extrabold text-uber-green mb-4">03</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">填寫詳細申請資料</h3>
+                    <p class="text-gray-400 mb-6 flex-grow">若您有意願加入Uber Eats請填寫我們的表單，加快申請作業！</p>
+                    <a href="https://forms.gle/UunHLVdknoceUtur8" target="_blank"
+                       class="inline-flex items-center justify-center w-full bg-gray-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-500 transition duration-300">
+                        前往填寫表單 &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- 合作申請步驟區塊結束 -->
+
+        <!-- 頁腳 (已更新為新品牌名稱) -->
+        <footer class="mt-20 py-8 border-t border-gray-800 text-center text-gray-500">
+            &copy; 2024 餐飲創業家顧問企業社. All rights reserved. | 隱私權政策 | 服務條款
+        </footer>
+
+    </div>
+
+</body>
+</html>
