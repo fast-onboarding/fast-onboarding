@@ -146,120 +146,47 @@
         </div>
     </header>
 
-    <main>
-        <!-- 英雄/首頁區塊 - 淺色背景，深色文字 -->
-        <section id="home" class="relative bg-gray-50 py-20 sm:py-32 overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <p class="text-lg font-semibold text-accent uppercase tracking-wider mb-2">Since 2022</p>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold text-primary leading-tight mb-6">
-                        品牌設計、餐飲行銷、<br class="hidden sm:inline"> 加盟規劃、招商拓展
-                    </h1>
-                    <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-600 sm:mt-5 sm:text-2xl">
-                        競爭的餐飲業，與其苦了自己，不如雇一支行銷小隊幫您打點一切。
-                        保持品質的原則下，降低成本！
-                    </p>
-                    <div class="mt-10 max-w-md mx-auto sm:flex sm:justify-center md:mt-12">
-                        <div class="rounded-lg shadow-xl">
-                            <a href="#services" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-150 md:py-4 md:text-lg md:px-10">
-                                查看我們的服務
-                            </a>
-                        </div>
-                        <div class="mt-3 rounded-lg shadow-xl sm:mt-0 sm:ml-3">
-                            <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-primary text-base font-medium rounded-lg text-primary bg-white hover:bg-indigo-50 transition duration-150 md:py-4 md:text-lg md:px-10">
-                                快速諮詢
-                            </a>
-                        </div>
+    <!-- 英雄/首頁區塊 - 淺色背景，深色文字 (更新為新的文案和金黃靛藍主題) -->
+    <section id="home" class="relative bg-gray-50 py-20 sm:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <!-- 副標/Slogan (Accent Color) -->
+                        <span class="inline-flex items-center rounded-full bg-primary px-3 py-1 text-sm font-bold text-white ring-2 ring-offset-2 ring-accent mb-4 transform hover:scale-105 transition duration-300 shadow-md">
+                            餐飲創業必備
+                        </span>
+                
+                <!-- 主標題 (Primary Color) - 已將「從零到一」設為金黃色 -->
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-primary leading-tight mb-6">
+                    <span class="text-accent">從零到一</span>，打造您的<span class="text-accent">金牌餐飲品牌</span>
+                </h1>
+                
+                <!-- 內文 (Gray/Primary Color) -->
+                <p class="mt-3 max-w-3xl mx-auto text-xl text-gray-600 sm:mt-5 sm:text-2xl">
+                    我們提供一站式的餐飲顧問服務，涵蓋品牌設計、行銷策略、加盟規劃，
+                    助您在競爭激烈的市場中脫穎而出。
+                </p>
+                
+                <!-- CTA 按鈕群組 -->
+                <div class="mt-10 max-w-xl mx-auto sm:flex sm:justify-center md:mt-12 space-y-4 sm:space-y-0 sm:space-x-4">
+                    <!-- CTA 1: 立即預約免費諮詢 (Accent Color) -->
+                    <div class="rounded-lg shadow-xl">
+                        <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-150 md:py-4 md:text-lg md:px-10 font-bold transform hover:scale-[1.02]">
+                            <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>
+                            立即預約免費諮詢
+                        </a>
+                    </div>
+                    <!-- CTA 2: 查看成功案例 (Primary Border/Text) -->
+                    <div class="rounded-lg shadow-xl">
+                        <a href="#cases" class="w-full flex items-center justify-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary bg-white hover:bg-indigo-50 transition duration-150 md:py-4 md:text-lg md:px-10 font-bold">
+                            <i data-lucide="gallery-vertical" class="w-5 h-5 mr-2"></i>
+                            查看成功案例
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- UberEats 快速上架服務 (深色背景，金黃色強調) -->
-        <section id="ubereats" class="py-20 sm:py-32 bg-secondary-dark text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <!-- 內容居中顯示 -->
-                <div class="max-w-4xl mx-auto text-center mb-16">
-                    <h2 class="text-base text-accent font-semibold tracking-wide uppercase">
-                        專屬外送市場服務
-                    </h2>
-                    <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight sm:text-5xl text-white">
-                        UberEats 餐廳上架顧問服務
-                    </p>
-                    <p class="mt-4 max-w-xl mx-auto text-xl text-gray-300">
-                        透過餐飲創業家顧問企業社，快速將您的餐廳上架至 UberEats！我們簡化了繁瑣的合約和流程，讓您專注於美食製作。
-                    </p>
-                    
-                    <!-- 社會證明 / 評分 -->
-                    <div class="mt-10 flex justify-center items-center space-x-8">
-                        <div class="text-center">
-                            <p class="text-5xl font-extrabold text-accent">4.9</p>
-                            <div class="flex text-accent mt-1">
-                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
-                                <i data-lucide="star-half" class="w-5 h-5 fill-accent stroke-accent"></i>
-                            </div>
-                            <p class="text-sm text-gray-400 mt-1">UberEats 顧問服務評分</p>
-                        </div>
-                        <div class="text-center border-l border-gray-600 pl-8">
-                            <p class="text-3xl font-extrabold text-white">數千名</p>
-                            <p class="text-sm text-gray-400 mt-1">成功拓展外送市場的業者</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 合作申請步驟 -->
-                <div class="mt-16">
-                    <h3 class="text-3xl font-extrabold text-center mb-12 text-white">合作申請步驟：輕鬆三步曲</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        <!-- 步驟 1 -->
-                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
-                            <div class="text-5xl font-black mb-4 text-accent">01</div>
-                            <h4 class="text-xl font-bold mb-2 text-white">點擊加入我們的LINE@</h4>
-                            <p class="text-gray-400 mb-4">
-                                餐飲創業家顧問企業社的窗口人員會在1-2天內回應您！
-                            </p>
-                            <a href="https://lin.ee/KC02bMr" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
-                                點此加入 LINE@ 
-                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                            </a>
-                        </div>
-                        
-                        <!-- 步驟 2 -->
-                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
-                            <div class="text-5xl font-black mb-4 text-accent">02</div>
-                            <h4 class="text-xl font-bold mb-2 text-white">取得最新抽成方案</h4>
-                            <p class="text-gray-400">
-                                我們會盡速提供最新、最優惠的抽成方案給您，協助您計算利潤並進行決策。
-                            </p>
-                        </div>
-
-                        <!-- 步驟 3 -->
-                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
-                            <div class="text-5xl font-black mb-4 text-accent">03</div>
-                            <h4 class="text-xl font-bold mb-2 text-white">填寫詳細申請資料</h4>
-                            <p class="text-gray-400 mb-4">
-                                若您有意願加入，請填寫我們的表單，加快申請作業。
-                            </p>
-                             <a href="https://forms.gle/UunHLVdknoceUtur8" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
-                                前往填寫表單
-                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 免責聲明 -->
-                <div class="mt-16 text-center text-gray-500 text-sm">
-                    <p class="font-bold mb-2">重要免責聲明:</p>
-                    <p>本服務由獨立第三方行銷公司 (餐飲創業家顧問企業社) 提供，非 Uber 或 UberEats 官方服務。</p>
-                    <p>所有 Uber 和 UberEats 商標及圖像屬於其各自所有者。</p>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
+  
 
 
         <!-- 服務項目 (Services) -->
@@ -332,7 +259,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- 我們的特色 (Features) -->
         <section id="features" class="py-20 sm:py-32 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -359,7 +286,7 @@
                             </p>
                         </div>
                         
-                        <!-- 特色 2 (已修改文案) -->
+                        <!-- 特色 2 (已根據前次請求更新為數位轉型/創新服務主題) -->
                         <div class="text-center p-6 bg-white rounded-xl shadow-lg border-t-4 border-primary">
                             <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-accent/10 text-primary">
                                 <i data-lucide="rocket" class="h-8 w-8"></i>
@@ -402,7 +329,7 @@
                         <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E5%A4%A9%E5%A4%A9%E7%83%A4%E8%82%89%E9%A3%AF%E7%81%AB%E7%83%A4%E5%B0%88%E9%96%80%E5%BA%97_Hero_2880x2304-1320x1056.jpg" alt="[天天烤肉飯 內科店 圖片]">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary mb-2">天天烤肉飯 內科店</h3>
-                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">線上平台上架輔導</span>
+                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">UberEats 上架顧問</span>
                             <p class="text-gray-500 text-sm">
                                 協助天天烤肉飯內科店快速上架至 UberEats，簡化繁瑣流程，讓品牌快速進入外送市場，提供美味烤肉飯。
                             </p>
@@ -414,19 +341,20 @@
                         <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E7%B2%B5%E8%90%8A%E5%8F%89%E7%87%92%E8%88%96-%E5%85%89%E5%BE%A9%E5%BA%97_HERO-1320x1056.jpg" alt="[粵萊叉燒舖 光復店 圖片]">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary mb-2">粵萊叉燒舖</h3>
-                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">線上營運顧問</span>
+                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">UberEats 上架顧問</span>
                             <p class="text-gray-500 text-sm">
                                 協助提供港式燒臘的粵萊叉燒舖光復店，成功優化外送菜單並完成 UberEats 上架流程，鎖定外送市場客群。
                             </p>
                         </div>
                     </div>
 
-                    <!-- 案例 3 (CN COFFEE LAB) -->
+                    <!-- 案例 3 (CN COFFEE LAB) - 圖片連結已更新 -->
                     <div class="case-card bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                        <!-- 將圖片連結替換為使用者提供的新連結 -->
                         <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/CN-COFFEE-LAB_Hero1-1536x1229.jpg" alt="[CN COFFEE LAB 咖啡廳 圖片]">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary mb-2">CN COFFEE LAB</h3>
-                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">線上上架顧問</span>
+                            <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">外送營運顧問</span>
                             <p class="text-gray-500 text-sm">
                                 協助 CN COFFEE LAB 將其高品質飲品（如濃郁拿鐵、西西里咖啡）及特色甜點（手工焦糖布丁）成功上架至 UberEats，簡化外送流程，專注美味輸出。
                             </p>
@@ -442,14 +370,15 @@
                 <h2 class="text-center text-3xl font-extrabold text-white mb-12">客戶回饋</h2>
 
                 <div class="space-y-8">
-                    <!-- UberEats 相關回饋 1 (深色背景，淺色卡片) -->
+                    <!-- UberEats 相關回饋 1 (臺中，陳老闆 - 頭像改為 C) -->
                     <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
                         <blockquote class="text-gray-700 italic">
                             「多虧了顧問的協助，我們的分店在兩週內就開始接單了，訂單量遠超預期！對於不熟悉數位外送平臺的老闆來說，這服務太重要了。」
                         </blockquote>
                         <div class="mt-4 flex items-center">
                             <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=陳" alt="[客戶頭像 圖片]">
+                                <!-- 佔位圖文字改為 C -->
+                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="[客戶頭像 C 圖片]">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-primary">臺中，陳老闆</p>
@@ -458,14 +387,15 @@
                         </div>
                     </div>
 
-                    <!-- UberEats 相關回饋 2 -->
+                    <!-- UberEats 相關回饋 2 (臺北，李小姐 - 頭像改為 L) -->
                     <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
                         <blockquote class="text-gray-700 italic">
                             「最讓我放心的是，顧問團隊真的找得到人！不像有些合作，簽完約人就消失了。他們都能回覆和協助，讓我們感到非常踏實。」
                         </blockquote>
                         <div class="mt-4 flex items-center">
                             <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=李" alt="[客戶頭像 圖片]">
+                                <!-- 佔位圖文字改為 L -->
+                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=L" alt="[客戶頭像 L 圖片]">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-primary">臺北，李小姐</p>
@@ -481,7 +411,7 @@
                         </blockquote>
                         <div class="mt-4 flex items-center">
                             <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="[客戶頭像 圖片]">
+                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="[客戶頭像 C 圖片]">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-primary">陳經理</p>
@@ -497,7 +427,7 @@
                         </blockquote>
                         <div class="mt-4 flex items-center">
                             <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=Z" alt="[客戶頭像 圖片]">
+                                <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=Z" alt="[客戶頭像 Z 圖片]">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-primary">張老闆</p>
@@ -574,6 +504,93 @@
                 </div>
             </div>
         </section>
+         
+        <!-- UberEats 快速上架服務 (深色背景，金黃色強調) -->
+        <section id="ubereats" class="py-20 sm:py-32 bg-secondary-dark text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- 內容居中顯示 -->
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <h2 class="text-base text-accent font-semibold tracking-wide uppercase">
+                        專屬外送市場服務
+                    </h2>
+                    <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight sm:text-5xl text-white">
+                        UberEats 餐廳上架顧問服務
+                    </p>
+                    <p class="mt-4 max-w-xl mx-auto text-xl text-gray-300">
+                        透過餐飲創業家顧問企業社，快速將您的餐廳上架至 UberEats！我們簡化了繁瑣的合約和流程，讓您專注於美食製作。
+                    </p>
+                    
+                    <!-- 社會證明 / 評分 -->
+                    <div class="mt-10 flex justify-center items-center space-x-8">
+                        <div class="text-center">
+                            <p class="text-5xl font-extrabold text-accent">4.9</p>
+                            <div class="flex text-accent mt-1">
+                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-accent stroke-accent"></i>
+                                <i data-lucide="star-half" class="w-5 h-5 fill-accent stroke-accent"></i>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-1">UberEats 顧問服務評分</p>
+                        </div>
+                        <div class="text-center border-l border-gray-600 pl-8">
+                            <p class="text-3xl font-extrabold text-white">數千名</p>
+                            <p class="text-sm text-gray-400 mt-1">成功拓展外送市場的業者</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 合作申請步驟 -->
+                <div class="mt-16">
+                    <h3 class="text-3xl font-extrabold text-center mb-12 text-white">合作申請步驟：輕鬆三步曲</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- 步驟 1 (已更新 LINE 連結) -->
+                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                            <div class="text-5xl font-black mb-4 text-accent">01</div>
+                            <h4 class="text-xl font-bold mb-2 text-white">點擊加入我們的LINE@</h4>
+                            <p class="text-gray-400 mb-4">
+                                餐飲創業家顧問企業社的窗口人員會在1-2天內回應您！
+                            </p>
+                            <!-- 更新 LINE 連結為 https://lin.ee/JflCjLe -->
+                            <a href="https://lin.ee/JflCjLe" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
+                                點此加入 LINE@ 
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- 步驟 2 -->
+                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                            <div class="text-5xl font-black mb-4 text-accent">02</div>
+                            <h4 class="text-xl font-bold mb-2 text-white">取得最新抽成方案</h4>
+                            <p class="text-gray-400">
+                                我們會盡速提供最新、最優惠的抽成方案給您，協助您計算利潤並進行決策。
+                            </p>
+                        </div>
+
+                        <!-- 步驟 3 -->
+                        <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                            <div class="text-5xl font-black mb-4 text-accent">03</div>
+                            <h4 class="text-xl font-bold mb-2 text-white">填寫詳細申請資料</h4>
+                            <p class="text-gray-400 mb-4">
+                                若您有意願加入，請填寫我們的表單，加快申請作業。
+                            </p>
+                             <a href="https://forms.gle/UunHLVdknoceUtur8" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
+                                前往填寫表單
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 免責聲明 -->
+                <div class="mt-16 text-center text-gray-500 text-sm">
+                    <p class="font-bold mb-2">重要免責聲明:</p>
+                    <p>本服務由獨立第三方行銷公司 (餐飲創業家顧問企業社) 提供，非 Uber 或 UberEats 官方服務。</p>
+                    <p>所有 Uber 和 UberEats 商標及圖像屬於其各自所有者。</p>
+                </div>
+            </div>
+        </section>     
     </main>
 
     <!-- 頁腳 (Footer) - 深色背景，金黃色 accent color -->
@@ -610,25 +627,15 @@
                     <p class="text-sm text-gray-300">電話: (02) 1234-5678</p>
                 </div>
 
-                <!-- 欄位 4: 訂閱/LINE -->
+                <!-- 欄位 4: 訂閱/LINE (已新增 LINE ID 超連結並更新圖標連結) -->
                 <div class="col-span-2 md:col-span-2">
                     <h3 class="text-xl font-semibold mb-4 text-accent">加入官方LINE</h3>
-                    <p class="text-sm text-gray-300 mb-4">快速諮詢服務，專人一對一為您解決品牌難題。</p>
-                    <!-- 社群圖標使用淺色/hover金黃色 -->
-                    <div class="flex space-x-4">
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition duration-150">
-                            <i data-lucide="facebook" class="h-6 w-6"></i>
-                        </a>
-                        <!-- Line Icon Placeholder -->
-                        <a href="https://lin.ee/KC02bMr" target="_blank" class="text-gray-400 hover:text-accent transition duration-150">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
-                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.131 16.51c-.13-.396-.264-.787-.406-1.173-.02-.05-.04-.1-.06-.145-.49-1.293-.997-2.6-1.503-3.904.053-.13.11-.26.164-.39.544-1.32.934-2.684 1.164-4.088.197-1.18.06-2.39-.37-3.486-.45-1.112-1.258-1.89-2.39-2.18-.755-.194-1.55-.195-2.26.04-.393.133-.767.332-1.107.597-.13.106-.25.226-.37.35-.12.12-.24.25-.36.37-.09.09-.17.19-.24.28-.15.19-.3.38-.45.58-.33.4-.64.84-.92 1.3-.43.72-.73 1.5-1.01 2.3-.39 1.1-.64 2.24-.8 3.4-.11.77-.21 1.54-.3 2.31-.05.4-.11.79-.17 1.18-.08.48-.12.97-.12 1.46 0 1.54.9 2.45 2.5 2.45.6 0 1.2-.1 1.77-.32.08-.03.16-.07.24-.12.67-.4 1.25-.89 1.83-1.37.1-.09.2-.18.3-.27.67-.6 1.34-1.2 2-1.8.08-.07.16-.14.25-.2.11-.07.23-.13.35-.18.08-.03.16-.05.25-.05.47.01.94.13 1.38.35.37.19.72.44 1.05.74.24.22.47.45.7.7.13.13.26.27.38.4.11.13.22.25.32.38.38.47.78.93 1.19 1.38.2.22.42.42.63.63.15.14.3.28.45.4.38.32.79.58 1.24.75.14.05.28.1.42.14.15.04.3.06.46.06 1.3 0 2.25-1.1 2.25-2.45 0-.74-.2-1.47-.6-2.13z"/>
-                            </svg>
-                        </a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition duration-150">
-                            <i data-lucide="instagram" class="h-6 w-6"></i>
-                        </a>
-                    </div>
+                    <p class="text-sm text-gray-300 mb-2">快速諮詢服務，專人一對一為您解決品牌難題。</p>
+                    
+                    <!-- 新增 LINE ID 超連結 -->
+                    <a href="https://lin.ee/JflCjLe" target="_blank" class="text-lg font-bold text-accent hover:text-white transition duration-150 block mb-4">
+                        LINE ID: @096sjsgj
+                    </a>
                 </div>
             </div>
 
@@ -770,5 +777,3 @@ ${message}
     </script>
 </body>
 </html>
-
-
