@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="zh-TW">
-
+<html lang="zh-TW" class="scroll-smooth"> <!-- 增加 scroll-smooth -->
 <head>
 
     <meta charset="UTF-8">
@@ -62,13 +60,14 @@
         :root {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Microsoft YaHei", "微軟正黑體", "新細明體";
         }
-        /* 自定義 Tailwind 配置 */
+        /* Style 升級：調整 case-card hover 陰影，使其更柔和 */
         .case-card {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .case-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3), 0 4px 6px -2px rgba(30, 58, 138, 0.1); /* 使用 Primary/Accent 陰影 */
+            /* 陰影顏色調整為使用 primary 色調，並降低不透明度 */
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.2), 0 4px 6px -2px rgba(30, 58, 138, 0.1); 
         }
     </style>
     <script>
@@ -90,7 +89,8 @@
     </script>
 </head>
 
-<body class="text-gray-800 bg-white">
+<!-- Style 升級：增加 leading-relaxed (更寬鬆的行距) 提升易讀性 -->
+<body class="text-gray-800 bg-white leading-relaxed">
 
     <!-- 頂部導航欄 (Header) - 深靛藍背景 -->
     <header class="bg-primary shadow-2xl sticky top-0 z-50">
@@ -195,8 +195,8 @@
     </header>
 
 <main>
-    <!-- 英雄/首頁區塊 - 淺色背景，深色文字 (更新為新的文案和金黃靛藍主題) -->
-    <section id="home" class="relative bg-gray-50 py-20 sm:py-32 overflow-hidden">
+    <!-- Style 升級：Hero 區塊背景改為柔和漸層，提升視覺質感 -->
+    <section id="home" class="relative bg-gradient-to-b from-white via-gray-50 to-gray-100 py-20 sm:py-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <!-- 副標/Slogan (Accent Color) -->
@@ -204,8 +204,8 @@
                             餐飲創業必備
                         </span>
                 
-                <!-- 主標題 (Primary Color) - 已將「從零到一」設為金黃色 -->
-                <h1 class="text-4xl sm:text-6xl font-extrabold text-primary leading-tight mb-6">
+                <!-- 主標題 (Primary Color) - Style 升級：調整 sm 尺寸下的行距 -->
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-primary leading-tight sm:leading-normal mb-6">
                     <span class="text-accent">從零到一</span>，打造您的<span class="text-accent">金牌餐飲品牌</span>
                 </h1>
                 
@@ -219,14 +219,16 @@
                 <div class="mt-10 max-w-xl mx-auto sm:flex sm:justify-center md:mt-12 space-y-4 sm:space-y-0 sm:space-x-4">
                     <!-- CTA 1: 立即預約免費諮詢 (Accent Color) -->
                     <div class="rounded-lg shadow-xl">
-                        <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-150 md:py-4 md:text-lg md:px-10 font-bold transform hover:scale-[1.02]">
+                        <!-- Style 升級：增加 hover:shadow-2xl 效果 -->
+                        <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-300 md:py-4 md:text-lg md:px-10 font-bold transform hover:scale-[1.02] hover:shadow-2xl">
                             <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>
                             立即預約免費諮詢
                         </a>
                     </div>
                     <!-- CTA 2: 查看成功案例 (Primary Border/Text) -->
                     <div class="rounded-lg shadow-xl">
-                        <a href="#cases" class="w-full flex items-center justify-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary bg-white hover:bg-indigo-50 transition duration-150 md:py-4 md:text-lg md:px-10 font-bold">
+                        <!-- Style 升級：增加 hover:shadow-2xl 效果 -->
+                        <a href="#cases" class="w-full flex items-center justify-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary bg-white hover:bg-indigo-50 transition duration-300 md:py-4 md:text-lg md:px-10 font-bold transform hover:scale-[1.02] hover:shadow-2xl">
                             <i data-lucide="gallery-vertical" class="w-5 h-5 mr-2"></i>
                             查看成功案例
                         </a>
@@ -235,7 +237,7 @@
             </div>
         </div>
     </section>
-  
+    
     <!-- 服務項目 (Services) -->
     <section id="services" class="py-20 sm:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -252,9 +254,10 @@
             <div class="mt-10">
                 <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                     <!-- 服務項目 1 -->
-                    <div class="relative">
+                    <div class="relative p-4 rounded-lg transition duration-300 hover:bg-gray-50">
                         <dt>
-                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary text-white">
+                            <!-- Style 升級：圖標背景改為輕量化的 primary/10 -->
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
                                 <i data-lucide="pencil-ruler" class="h-6 w-6"></i>
                             </div>
                             <p class="ml-16 text-lg leading-6 font-medium text-primary">品牌視覺與產品設計</p>
@@ -265,9 +268,9 @@
                     </div>
                     
                     <!-- 服務項目 2 -->
-                    <div class="relative">
+                    <div class="relative p-4 rounded-lg transition duration-300 hover:bg-gray-50">
                         <dt>
-                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary text-white">
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
                                 <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
                             </div>
                             <p class="ml-16 text-lg leading-6 font-medium text-primary">菜單與顧客體驗設計</p>
@@ -278,9 +281,9 @@
                     </div>
 
                     <!-- 服務項目 3 -->
-                    <div class="relative">
+                    <div class="relative p-4 rounded-lg transition duration-300 hover:bg-gray-50">
                         <dt>
-                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary text-white">
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
                                 <i data-lucide="git-fork" class="h-6 w-6"></i>
                             </div>
                             <p class="ml-16 text-lg leading-6 font-medium text-primary">連鎖加盟體系規劃</p>
@@ -291,9 +294,9 @@
                     </div>
 
                     <!-- 服務項目 4 -->
-                    <div class="relative">
+                    <div class="relative p-4 rounded-lg transition duration-300 hover:bg-gray-50">
                         <dt>
-                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary text-white">
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary">
                                 <i data-lucide="handshake" class="h-6 w-6"></i>
                             </div>
                             <p class="ml-16 text-lg leading-6 font-medium text-primary">招商與通路拓展</p>
@@ -322,9 +325,10 @@
             
             <div class="mt-10">
                 <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <!-- Style 升級：卡片移除 border-t，改用圓角陰影 + hover 效果 -->
                     <!-- 特色 1 -->
-                    <div class="text-center p-6 bg-white rounded-xl shadow-lg border-t-4 border-primary">
-                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-accent/10 text-primary">
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary/10 text-primary">
                             <i data-lucide="layers-3" class="h-8 w-8"></i>
                         </div>
                         <h3 class="mt-4 text-xl font-bold text-primary">完整的解決方案</h3>
@@ -333,9 +337,9 @@
                         </p>
                     </div>
                     
-                    <!-- 特色 2 (已根據前次請求更新為數位轉型/創新服務主題) -->
-                    <div class="text-center p-6 bg-white rounded-xl shadow-lg border-t-4 border-primary">
-                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-accent/10 text-primary">
+                    <!-- 特色 2 -->
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary/10 text-primary">
                             <i data-lucide="rocket" class="h-8 w-8"></i>
                         </div>
                         <h3 class="mt-4 text-xl font-bold text-primary">驅動餐飲品牌的智慧成長</h3>
@@ -345,8 +349,8 @@
                     </div>
 
                     <!-- 特色 3 -->
-                    <div class="text-center p-6 bg-white rounded-xl shadow-lg border-t-4 border-primary">
-                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-accent/10 text-primary">
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary/10 text-primary">
                             <i data-lucide="trending-up" class="h-8 w-8"></i>
                         </div>
                         <h3 class="mt-4 text-xl font-bold text-primary">專注於實際營收</h3>
@@ -370,10 +374,10 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 案例 1 (天天烤肉飯 內科店) -->
+                <!-- 案例 1 (天天烤肉飯 內科店) - (使用 .case-card 樣式) -->
                 <div class="case-card bg-gray-50 rounded-xl shadow-md overflow-hidden">
                     <!-- 使用天天烤肉飯圖片 -->
-                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E5%A4%A9%E5%A4%A9%E7%83%A4%E8%82%89%E9%A3%AF%E7%81%AB%E7%83%A4%E5%B0%88%E9%96%80%E5%BA%97_Hero_2880x2304-1320x1056.jpg" alt="">
+                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E5%A4%A9%E5%A4%A9%E7%83%A4%E8%82%89%E9%A3%AF%E7%81%AB%E7%83%A4%E5%B0%88%E9%96%80%E5%BA%97_Hero_2880x2304-1320x1056.jpg" alt="天天烤肉飯內科店的美味烤肉飯">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-primary mb-2">天天烤肉飯 內科店</h3>
                         <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">線上平台上架輔導</span>
@@ -385,7 +389,7 @@
                 
                 <!-- 案例 2 (粵萊叉燒舖 光復店) - 圖片已更新 -->
                 <div class="case-card bg-gray-50 rounded-xl shadow-md overflow-hidden">
-                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E7%B2%B5%E8%90%8A%E5%8F%89%E7%87%92%E8%88%96-%E5%85%89%E5%BE%A9%E5%BA%97_HERO-1320x1056.jpg" alt="">
+                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/%E7%B2%B5%E8%90%8A%E5%8F%89%E7%87%92%E8%88%96-%E5%85%89%E5%BE%A9%E5%BA%97_HERO-1320x1056.jpg" alt="粵萊叉燒舖的美味港式燒臘">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-primary mb-2">粵萊叉燒舖</h3>
                         <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">線上營運顧問</span>
@@ -398,7 +402,7 @@
                 <!-- 案例 3 (CN COFFEE LAB) - 圖片連結已更新 -->
                 <div class="case-card bg-gray-50 rounded-xl shadow-md overflow-hidden">
                     <!-- 將圖片連結替換為使用者提供的新連結 -->
-                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/CN-COFFEE-LAB_Hero1-1536x1229.jpg" alt="">
+                    <img class="h-48 w-full object-cover" src="https://raw.githubusercontent.com/fast-onboarding/fast-onboarding/main/CN-COFFEE-LAB_Hero1-1536x1229.jpg" alt="CN COFFEE LAB 的精緻咖啡與甜點">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-primary mb-2">CN COFFEE LAB</h3>
                         <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">外送營運顧問</span>
@@ -417,15 +421,16 @@
             <h2 class="text-center text-3xl font-extrabold text-white mb-12">客戶回饋</h2>
 
             <div class="space-y-8">
+                <!-- Style 升級：卡片移除 border-t，改用 border-l (左側引導線)，強化「引用」的視覺感 -->
                 <!-- UberEats 相關回饋 1 (臺中，陳老闆 - 頭像改為 C) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-accent">
                     <blockquote class="text-gray-700 italic">
                         「多虧了顧問的協助，我們的分店在兩週內就開始接單了，訂單量遠超預期！對於不熟悉數位外送平臺的老闆來說，這服務太重要了。」
                     </blockquote>
                     <div class="mt-4 flex items-center">
                         <div class="flex-shrink-0">
                             <!-- 佔位圖文字改為 C -->
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="">
+                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="台中陳老闆頭像">
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-primary">臺中，陳老闆</p>
@@ -435,14 +440,14 @@
                 </div>
 
                 <!-- UberEats 相關回饋 2 (臺北，李小姐 - 頭像改為 L) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-accent">
                     <blockquote class="text-gray-700 italic">
                         「最讓我放心的是，顧問團隊真的找得到人！不像有些合作，簽完約人就消失了。他們都能回覆和協助，讓我們感到非常踏實。」
                     </blockquote>
                     <div class="mt-4 flex items-center">
                         <div class="flex-shrink-0">
                             <!-- 佔位圖文字改為 L -->
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=L" alt="">
+                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=L" alt="台北李小姐頭像">
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-primary">臺北，李小姐</p>
@@ -452,13 +457,13 @@
                 </div>
 
                 <!-- 原始回饋 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-accent">
                     <blockquote class="text-gray-700 italic">
                         「關於費用的說明很清楚，讓我們這些小企業用得安心，有時候真怕被當肥羊宰，畢竟不太懂網路。每個月花幾千塊，讓他們打理大小事情，對我們這種餐飲業者來說很方便。」
                     </blockquote>
                     <div class="mt-4 flex items-center">
                         <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="">
+                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=C" alt="陳經理頭像">
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-primary">陳經理</p>
@@ -468,13 +473,13 @@
                 </div>
 
                 <!-- 原始回饋 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-accent">
                     <blockquote class="text-gray-700 italic">
                         「他們對於餐飲業很專業，服務細心又事事親力親為，不會有隔閡。有什麼感想喔...做事還算俐落啦。主要是我們很懶得去規劃說什麼行銷活動啦。」
                     </blockquote>
                     <div class="mt-4 flex items-center">
                         <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=Z" alt="">
+                            <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/40x40/1E3A8A/FFFFFF?text=Z" alt="張老闆頭像">
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-primary">張老闆</p>
@@ -501,46 +506,48 @@
                 </div>
 
                 <!-- 聯絡表單 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-2xl">
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-2xl"> <!-- Style 升級：圓角加大 -->
                     <form id="contactForm" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         <!-- 姓名 (必填) -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">姓名 (必填)</label>
                             <div class="mt-1">
-                                <input type="text" name="name" id="name" autocomplete="name" placeholder="您的名字" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg">
+                                <!-- Style 升級：增加 transition-colors -->
+                                <input type="text" name="name" id="name" autocomplete="name" placeholder="您的名字" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg transition-colors duration-300">
                             </div>
                         </div>
                         <!-- LINE ID (選填) -->
                         <div>
                             <label for="line-id" class="block text-sm font-medium text-gray-700">LINE ID (選填)</label>
                             <div class="mt-1">
-                                <input type="text" name="line-id" id="line-id" placeholder="您的 Line ID" class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg">
+                                <input type="text" name="line-id" id="line-id" placeholder="您的 Line ID" class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg transition-colors duration-300">
                             </div>
                         </div>
                         <!-- 電話號碼 (必填) -->
                         <div class="sm:col-span-2">
                             <label for="phone-number" class="block text-sm font-medium text-gray-700">電話號碼 (必填)</label>
                             <div class="mt-1">
-                                <input type="text" name="phone-number" id="phone-number" autocomplete="tel" placeholder="09XX-XXX-XXX" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg">
+                                <input type="text" name="phone-number" id="phone-number" autocomplete="tel" placeholder="09XX-XXX-XXX" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg transition-colors duration-300">
                             </div>
                         </div>
                         <!-- 餐廳/品牌名稱 (必填) -->
                         <div class="sm:col-span-2">
                             <label for="restaurant-name" class="block text-sm font-medium text-gray-700">餐廳/品牌名稱 (必填)</label>
                             <div class="mt-1">
-                                <input type="text" name="restaurant-name" id="restaurant-name" placeholder="品牌名稱 (若無可填寫 '尚未命名')" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg">
+                                <input type="text" name="restaurant-name" id="restaurant-name" placeholder="品牌名稱 (若無可填寫 '尚未命名')" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg transition-colors duration-300">
                             </div>
                         </div>
                         <!-- 您的需求簡述 (必填) -->
                         <div class="sm:col-span-2">
                             <label for="message" class="block text-sm font-medium text-gray-700">您的需求簡述 (必填)</label>
                             <div class="mt-1">
-                                <textarea id="message" name="message" rows="4" placeholder="請簡述您的需求，例如：想洽談加盟規劃或 UberEats 上架服務。" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg"></textarea>
+                                <textarea id="message" name="message" rows="4" placeholder="請簡述您的需求，例如：想洽談加盟規劃或 UberEats 上架服務。" required class="py-3 px-4 block w-full shadow-sm focus:ring-accent focus:border-accent border-gray-300 rounded-lg transition-colors duration-300"></textarea>
                             </div>
                         </div>
                         <!-- 送出按鈕和訊息回饋區 -->
                         <div class="sm:col-span-2">
-                            <button type="submit" id="submitButton" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+                            <!-- Style 升級：增加 hover:shadow-xl 和 transform -->
+                            <button type="submit" id="submitButton" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-lg text-primary bg-accent hover:bg-[#FABD1A] transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent hover:shadow-xl hover:scale-[1.01]">
                                 送出諮詢表單
                             </button>
                             <!-- 訊息回饋區 -->
@@ -592,8 +599,9 @@
             <div class="mt-16">
                 <h3 class="text-3xl font-extrabold text-center mb-12 text-white">合作申請步驟：輕鬆三步曲</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Style 升級：卡片移除 border-t，改用圓角陰影 + hover 效果 -->
                     <!-- 步驟 1 (已更新 LINE 連結) -->
-                    <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                    <div class="text-center p-6 rounded-2xl bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-accent hover:-translate-y-1">
                         <div class="text-5xl font-black mb-4 text-accent">01</div>
                         <h4 class="text-xl font-bold mb-2 text-white">點擊加入我們的LINE@</h4>
                         <p class="text-gray-400 mb-4">
@@ -607,7 +615,7 @@
                     </div>
                     
                     <!-- 步驟 2 -->
-                    <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                    <div class="text-center p-6 rounded-2xl bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-accent hover:-translate-y-1">
                         <div class="text-5xl font-black mb-4 text-accent">02</div>
                         <h4 class="text-xl font-bold mb-2 text-white">取得最新抽成方案</h4>
                         <p class="text-gray-400">
@@ -616,13 +624,13 @@
                     </div>
 
                     <!-- 步驟 3 -->
-                    <div class="text-center p-6 rounded-xl bg-gray-900 shadow-xl border-t-4 border-accent">
+                    <div class="text-center p-6 rounded-2xl bg-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-accent hover:-translate-y-1">
                         <div class="text-5xl font-black mb-4 text-accent">03</div>
                         <h4 class="text-xl font-bold mb-2 text-white">填寫詳細申請資料</h4>
                         <p class="text-gray-400 mb-4">
                             若您有意願加入，請填寫我們的表單，加快申請作業。
                         </p>
-                           <a href="https://forms.gle/UunHLVdknoceUtur8" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
+                            <a href="https://forms.gle/UunHLVdknoceUtur8" target="_blank" class="px-6 py-2 border-2 border-accent text-accent hover:bg-accent hover:text-primary font-semibold rounded-lg inline-flex items-center transition duration-150 shadow-md">
                             前往填寫表單
                             <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                         </a>
@@ -637,7 +645,7 @@
                 <p>所有 Uber 和 UberEats 商標及圖像屬於其各自所有者。</p>
             </div>
         </div>
-    </section>     
+    </section>      
     </main>
 
     <!-- 頁腳 (Footer) - 深色背景，金黃色 accent color -->
@@ -659,8 +667,8 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4 text-accent">服務分類</h3>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-gray-300 hover:text-accent transition duration-150">加盟規劃</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-accent transition duration-150">餐飲行銷</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-accent transition duration-150">加盟規劃</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-accent transition duration-150">餐飲行銷</a></li>
                         <!-- 更新連結至 UberEats 專區 -->
                         <li><a href="#ubereats" class="text-gray-300 hover:text-accent transition duration-150">UberEats 上架顧問</a></li>
                     </ul>
